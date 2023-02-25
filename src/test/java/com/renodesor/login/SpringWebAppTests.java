@@ -1,4 +1,4 @@
-package com.openclassrooms.login;
+package com.renodesor.login;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;

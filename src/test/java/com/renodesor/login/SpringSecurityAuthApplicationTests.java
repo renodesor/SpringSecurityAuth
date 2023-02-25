@@ -1,4 +1,4 @@
-package com.openclassrooms.login;
+package com.renodesor.login;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.openclassrooms.login.controller.LoginController;
+import com.renodesor.login.controller.LoginController;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)

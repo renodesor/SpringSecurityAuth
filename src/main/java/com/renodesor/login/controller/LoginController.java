@@ -1,4 +1,4 @@
-package com.openclassrooms.login.controller;
+package com.renodesor.login.controller;
 
 import java.security.Principal;
 import java.util.Map;
@@ -14,11 +14,13 @@ import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 
 @RestController
+@RequestMapping("oauth2login")
+//@CrossOrigin(origins = "http://localhost:8081", allowedHeaders = "*")
 public class LoginController {
 	
 	private final OAuth2AuthorizedClientService authorizedClientService;

@@ -8,13 +8,15 @@
 		<version>2.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.openclassrooms</groupId>
+	<groupId>com.renodesor.web</groupId>
 	<artifactId>SpringSecurityAuth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringSecurityAuth</name>
 	<description>Web Spring Boot Security Auth</description>
+	<packaging>war</packaging>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
+		<start-class>com.renodesor.login.SpringSecurityAuthApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,8 +30,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+      				<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>	
 		</dependency>
-
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+<!--
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
