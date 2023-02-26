@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("oauth2login")
-//@CrossOrigin(origins = "http://localhost:8081", allowedHeaders = "*")
 public class LoginController {
 	
 	private final OAuth2AuthorizedClientService authorizedClientService;
@@ -29,13 +27,13 @@ public class LoginController {
 		this.authorizedClientService = authorizedClientService;
 	}
 	
-	@RequestMapping("/user")
+	@RequestMapping("/oauth2login/user")
 	@RolesAllowed("USER")
 	public String getUser() {
 		return "Welcome User";
 	}
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/oauth2login/admin")
 	@RolesAllowed("ADMIN")
 	public String getAdmin() {
 		return "Welcome Admin";
@@ -70,7 +68,8 @@ public class LoginController {
 		
 		String userToken = authClient.getAccessToken().getTokenValue();
 		
-		protectedInfo.append("Welcome, "+(userDetails.get("name") != null ? userDetails.get("name") : userDetails.get("login"))+ "<br></br>");
+		protectedInfo.append("Welcome, "+(userDetails.get("name"))+ "<br></br>");
+		protectedInfo.append("Bienvenue, "+(userDetails.get("login"))+ "<br></br>");
 		protectedInfo.append("Email : "+userDetails.get("email")+ "<br></br>");
 /*
 		protectedInfo.append("Access Token "+userToken + "<br><br>");
