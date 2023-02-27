@@ -24,7 +24,7 @@ jobs:
           
       - put: artifactory
         params:
-          path: build-output
+          path: target
 #          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
 #          build_name: "SpringSecurityAuth"
 #          build_number: ((.:build_version))
