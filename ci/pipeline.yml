@@ -4,7 +4,7 @@ jobs:
     plan:
       - in_parallel:
           - get: source-code
-            trigger: false
+            trigger: true
           - get: version
             params: {pre: build}
             
@@ -24,7 +24,7 @@ jobs:
           
       - put: artifactory
         params:
-          path: build-output
+#          path: build-output
           build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
           build_name: "SpringSecurityAuth"
           build_number: ((.:build_version))
@@ -53,16 +53,15 @@ resources:
       repository_id: release-candidates-local
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
-      enforce_semver: true    
+#      enforce_semver: true    
       
   - name: version
     type: semver
     source:
       driver: git
-      initial_version: 1.0.0
       uri: git@github.com:renodesor/SpringSecurityAuth.git
       branch: main
-      file: version
+      file: version123
       private_key: {{private_key}}
 
 resource_types:
