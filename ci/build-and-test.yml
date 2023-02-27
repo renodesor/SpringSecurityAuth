@@ -22,7 +22,7 @@ run:
     - |
       cd source-code
       mvn clean package ${MAVEN_ADDITIONAL_ARGS} -Drevision=${VERSION}
-      cp target/*.war ../target/
       cp settings.xml ../target/
+      cp target/*.war ../target/
       cd ../version
       cp version ../target/
