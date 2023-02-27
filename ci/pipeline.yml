@@ -63,8 +63,7 @@ resources:
       uri: git@github.com:renodesor/SpringSecurityAuth.git
       branch: main
       file: version
-#      private_key: |
-#        {{private_key}}
+      private_key: {{private_key}}
 
 resource_types:
   - name: artifactory
