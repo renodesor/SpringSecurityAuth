@@ -44,13 +44,13 @@ resources:
     type: artifactory
     source:
       #url: "https://renodesorenterprise.jfrog.io/artifactory"
-      #username: ((artifactory-username))
-      #password: ((artifactory-password))
+      username: ((artifactory-username))
+      password: ((artifactory-password))
       #repository: "maven-releases-local"
       
       api_key: da269b86-62ae-4987-92ab-a3863a400735
       host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: release-candidates-local
+      repository_id: reno-rep-local
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
 #      enforce_semver: true    
