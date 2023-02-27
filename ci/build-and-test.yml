@@ -10,6 +10,7 @@ image_resource:
 
 inputs:
   - name: source-code
+  - name: version
 
 outputs:
   - name: target
@@ -20,5 +21,5 @@ run:
     - -exc
     - |
       cd source-code
-      mvn clean package -DskipTests=true -Drevision=$(cat source-code/version)
+      mvn clean package -DskipTests=true -Drevision=(cat source-code/version)
       cp target/*.war ../target/
