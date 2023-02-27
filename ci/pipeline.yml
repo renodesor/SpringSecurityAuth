@@ -4,7 +4,7 @@ jobs:
     plan:
       - in_parallel:
           - get: source-code
-            trigger: true
+            trigger: false
           - get: version
             params: {pre: build}
             
@@ -24,13 +24,13 @@ jobs:
           
       - put: artifactory
         params:
-#          path: build-output
-          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
-          build_name: "SpringSecurityAuth"
-          build_number: ((.:build_version))
-          properties: "name=SpringSecurityAuth,version=((.:build_version))"
-          source_paths: "source-code/target/SpringSecurityAuth*.war"
-          target_path: "release-candidates-local/reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war"
+          path: build-output
+#          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
+#          build_name: "SpringSecurityAuth"
+#          build_number: ((.:build_version))
+#          properties: "name=SpringSecurityAuth,version=((.:build_version))"
+#          source_paths: "source-code/target/SpringSecurityAuth*.war"
+#          target_path: "release-candidates-local/reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war"
 
 resources:
   - name: source-code
@@ -50,7 +50,7 @@ resources:
       
       api_key: da269b86-62ae-4987-92ab-a3863a400735
       host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: reno-rep-local
+      repository_id: release-candidates-local
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
 #      enforce_semver: true    
