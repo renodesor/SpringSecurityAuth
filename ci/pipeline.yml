@@ -1,17 +1,3 @@
-resources:
-  - name: source-code
-    type: git
-    source:
-      uri: https://github.com/renodesor/SpringSecurityAuth.git
-      branch: main
-
-  - name: artifactory
-    type: docker-image
-    source:
-      url: "https://renodesorenterprise.jfrog.io/artifactory"
-      username: ((artifactory-username))
-      password: ((artifactory-password))
-      repository: "maven-releases-local"
 
 jobs:
   - name: build-and-test
@@ -19,7 +5,6 @@ jobs:
       - get: source-code
         trigger: true
       - task: build-and-test
-        #image: maven:3-jdk-11
         file: source-code/ci/build-and-test.yml
         params:
           MAVEN_OPTS: "-Xmx1024m"
@@ -32,4 +17,17 @@ jobs:
           source_paths: "source-code/target/SpringSecurityAuth*.war"
           target_path: "maven-releases-local/example-repo-local/SpringSecurityAuth/$(cat source-code/version)/SpringSecurityAuth-$(cat source-code/version).war"
 
+resources:
+  - name: source-code
+    type: git
+    source:
+      uri: https://github.com/renodesor/SpringSecurityAuth.git
+      branch: main
 
+  - name: artifactory
+    type: docker
+    source:
+      url: "https://renodesorenterprise.jfrog.io/artifactory"
+      username: ((artifactory-username))
+      password: ((artifactory-password))
+      repository: "maven-releases-local"
