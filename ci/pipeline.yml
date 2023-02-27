@@ -25,13 +25,12 @@ jobs:
       - put: artifactory
         params:
           path: build-output
-#          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
-#          build_name: "SpringSecurityAuth"
-#          build_number: "$(cat source-code/version)"
-#          properties: "name=SpringSecurityAuth,version=$(cat source-code/version)"
-#          debug: true
-#          source_paths: "source-code/target/SpringSecurityAuth*.war"
-#          target_path: "maven-releases-local/reno-rep-local/SpringSecurityAuth/$(cat source-code/version)/SpringSecurityAuth-/$(cat source-code/version).war"
+          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
+          build_name: "SpringSecurityAuth"
+          build_number: ((.:build_version))
+          properties: "name=SpringSecurityAuth,version=((.:build_version))"
+          source_paths: "source-code/target/SpringSecurityAuth*.war"
+          target_path: "release-candidates-local/reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war"
 
 resources:
   - name: source-code
@@ -64,8 +63,8 @@ resources:
       uri: git@github.com:renodesor/SpringSecurityAuth.git
       branch: main
       file: version
-      private_key: |
-        {{private_key}}
+#      private_key: |
+#        {{private_key}}
 
 resource_types:
   - name: artifactory
