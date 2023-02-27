@@ -6,12 +6,12 @@ jobs:
         trigger: true
       - get: version
         params: {bump: major}
+      - put: version
+        params: {file: version/version}
       - task: build-and-test
         file: source-code/ci/build-and-test.yml
         params:
-          MAVEN_OPTS: "-Xmx1024m"
-      - put: version
-        params: {file: version/version}
+          MAVEN_OPTS: "-Xmx1024m"       
       
       - put: artifactory
         params:
