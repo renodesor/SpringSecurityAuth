@@ -10,6 +10,7 @@ image_resource:
 
 inputs:
   - name: source-code
+  - name: version
 
 outputs:
   - name: target
@@ -22,4 +23,5 @@ run:
       cd source-code
       mvn clean package ${MAVEN_ADDITIONAL_ARGS} -Drevision=${VERSION}
       cp target/*.war ../target/
+      cd version
       cp version ../target/
