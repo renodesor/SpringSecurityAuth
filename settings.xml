@@ -9,9 +9,9 @@
 
 			<id>artifactory</id>
 
-			<mirror>
+			<mirrorOf>
 				*
-			</mirror>
+			</mirrorOf>
 
 				<url>https://renodesorenterprise.jfrog.io/artifactory/reno-maven-virtual/</url>
 
