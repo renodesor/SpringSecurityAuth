@@ -10,12 +10,13 @@
 	</parent>
 	<groupId>com.renodesor.web</groupId>
 	<artifactId>SpringSecurityAuth</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${revision}</version>
 	<name>SpringSecurityAuth</name>
 	<description>Web Spring Boot Security Auth</description>
 	<packaging>war</packaging>
 	<properties>
 		<java.version>8</java.version>
+		<revision>0.0.1-SNAPSHOT</revision>
 		<start-class>com.renodesor.login.SpringSecurityAuthApplication</start-class>
 	</properties>
 	

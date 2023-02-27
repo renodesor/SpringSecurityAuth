@@ -4,10 +4,15 @@ jobs:
     plan:
       - get: source-code
         trigger: true
+      - get: version
+        params: {bump: major}
       - task: build-and-test
         file: source-code/ci/build-and-test.yml
         params:
           MAVEN_OPTS: "-Xmx1024m"
+      - put: version
+        params: {file: version/version}
+        
       - put: artifactory
         params:
           build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
@@ -23,14 +28,31 @@ resources:
     source:
       uri: https://github.com/renodesor/SpringSecurityAuth.git
       branch: main
+      private_key: {{spring-security-auth-key-rw}}
 
   - name: artifactory
     type: artifactory
     source:
-      url: "https://renodesorenterprise.jfrog.io/artifactory"
-      username: ((artifactory-username))
-      password: ((artifactory-password))
-      repository: "maven-releases-local"
+      #url: "https://renodesorenterprise.jfrog.io/artifactory"
+      #username: ((artifactory-username))
+      #password: ((artifactory-password))
+      #repository: "maven-releases-local"
+      
+      api_key: da269b86-62ae-4987-92ab-a3863a400735
+      host: https://renodesorenterprise.jfrog.io/artifactory
+      repository_id: reno-rep-remote
+      group_id: com.renodesor.web
+      artifact_id: SpringSecurityAuth
+      enforce_semver: true    
+      
+  - name: version
+    type: semver
+    source:
+      driver: git
+      uri: https://github.com/renodesor/SpringSecurityAuth.git
+      branch: main
+      file: version
+      private_key: {{spring-security-auth-key-rw}}
 
 resource_types:
   - name: artifactory
