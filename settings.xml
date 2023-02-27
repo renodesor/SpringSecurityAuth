@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xad/settings-1.0.0.xsd"
+	<mirrors>
+
+		<mirror>
+
+			<id>artifactory</id>
+
+			<mirroror>
+				*
+			</mirrorof>
+
+				<url>https://renodesorenterprise.jfrog.io/artifactory/reno-maven-virtual/</url>
+
+		</mirror>
+	</mirrors>
+
+	<servers>
+
+		<server>
+
+			<id>artifactory</id>
+
+			<configuration>
+
+				<httpHeaders>
+
+					<property>
+
+						<name>X-JFrog-Art-Api</name>
+
+						<value>$(env.ARTIFACTORY_API_KEY)</value>
+
+					</property>
+
+				</httpHeaders>
+			</configuration>
+
+		</server>
+
+	</servers>
+<!--
+ 	<profiles>
+
+		<profile>
+
+			<id>default</id>
+			<properties>
+
+				<maven.repo.local>${user.home)/.m2/repository</maven.repo.local>
+
+				<sonar.host.url>https://renodesor.sonar.com</sonar.host.url>
+
+				<sonar.login>$(env. SONARQUBE_KEY)</sonar.login>
+
+			</properties>
+
+		</profile>
+
+	</profiles>
+
+	<activeProfiles>
+
+		<activeProfile>default</activeProfile>
+	</activeProfiles>
+ -->
+</settings>
