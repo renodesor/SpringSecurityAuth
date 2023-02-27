@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xad/settings-1.0.0.xsd">
 	<mirrors>
-
+<!-- 
 		<mirror>
 
 			<id>artifactory-reno</id>
@@ -16,7 +16,8 @@
 				<url>https://renodesorenterprise.jfrog.io/artifactory/reno-maven-virtual/</url>
 
 		</mirror>
-		<mirror>
+ -->		
+ 		<mirror>
 
 			<id>artifactory-public</id>
 
