@@ -21,5 +21,5 @@ run:
     - -exc
     - |
       cd source-code
-      mvn clean package -DskipTests=true -Drevision=1.0.0
+      mvn clean package ${MAVEN_OPTS} ${MAVEN_ADDITIONAL_ARGS} -Drevision=${VERSION}
       cp target/*.war ../target/

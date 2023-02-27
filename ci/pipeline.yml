@@ -2,25 +2,36 @@
 jobs:
   - name: build-and-test
     plan:
-      - get: source-code
-        trigger: true
-      - get: version
-        params: {bump: major}
+      - in_parallel:
+          - get: source-code
+            trigger: false
+          - get: version
+            params: {pre: build}
+            
       - put: version
         params: {file: version/version}
+      - load_var: build_version
+        file: version/version
+        
       - task: build-and-test
-        file: source-code/ci/build-and-test.yml
+        file: source-code/ci/build-and-test.yml       
+        input_mapping:
+          repo: source-code  
         params:
-          MAVEN_OPTS: "-Xmx1024m"       
-      
+          MAVEN_OPTS: "-Xmx1024m"
+          MAVEN_ADDITIONAL_ARGS: -DskipTests -Dpackage=war
+          VERSION: ((.:build_version))
+          
       - put: artifactory
         params:
-          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
-          build_name: "SpringSecurityAuth"
-          build_number: "$(cat source-code/version)"
-          properties: "name=SpringSecurityAuth,version=$(cat source-code/version)"
-          source_paths: "source-code/target/SpringSecurityAuth*.war"
-          target_path: "maven-releases-local/example-repo-local/SpringSecurityAuth/$(cat source-code/version)/SpringSecurityAuth-$(cat source-code/version).war"
+          path: build-output
+#          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
+#          build_name: "SpringSecurityAuth"
+#          build_number: "$(cat source-code/version)"
+#          properties: "name=SpringSecurityAuth,version=$(cat source-code/version)"
+#          debug: true
+#          source_paths: "source-code/target/SpringSecurityAuth*.war"
+#          target_path: "maven-releases-local/reno-rep-local/SpringSecurityAuth/$(cat source-code/version)/SpringSecurityAuth-/$(cat source-code/version).war"
 
 resources:
   - name: source-code
@@ -40,7 +51,7 @@ resources:
       
       api_key: da269b86-62ae-4987-92ab-a3863a400735
       host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: reno-rep-remote
+      repository_id: release-candidates-local
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
       enforce_semver: true    
@@ -49,15 +60,16 @@ resources:
     type: semver
     source:
       driver: git
-      initial_version: 0.0.1
+      initial_version: 1.0.0
       uri: git@github.com:renodesor/SpringSecurityAuth.git
       branch: main
       file: version
-      private_key: {{private_key}}
+      private_key: |
+        {{private_key}}
 
 resource_types:
   - name: artifactory
     type: registry-image
     source:
       repository: emeraldsquad/artifactory-resource
-      tag: 3.1.1
+      tag: 2.0.14
