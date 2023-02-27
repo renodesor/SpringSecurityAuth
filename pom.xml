@@ -18,6 +18,7 @@
 		<java.version>8</java.version>
 		<revision>0.0.1-SNAPSHOT</revision>
 		<start-class>com.renodesor.login.SpringSecurityAuthApplication</start-class>
+		<artifactPass>Admin1@jfroj</artifactPass>
 	</properties>
 	
 	<dependencies>
@@ -127,6 +128,29 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.jfrog.buildinfo</groupId> 
+				<artifactId>artifactory-maven-plugin</artifactId>				
+				<version>3.5.1</version>				
+				<inherited>false</inherited>				
+				<executions>				
+					<execution>				
+						<id>build-info</id>				
+						<goals>				
+							<goal>publish</goal>				
+						</goals>				
+						<configuration>				
+							<publisher>				
+								<contextUrl>https://renodesorenterprise.jfrog.io/artifactory</contextUrl>				
+								<username>uadmin</username>				
+								<password></password>				
+								<repoKey>da269b86-62ae-4987-92ab-a3863a400735</repoKey> 
+								<snapshotRepoKey>reno-rep-remote</snapshotRepoKey>				
+							</publisher>				
+						</configuration>				
+					</execution>				
+				</executions>				
+			</plugin>			
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
