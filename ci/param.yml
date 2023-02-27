@@ -1,5 +1,6 @@
 artifactory-username: "renodesor@yahoo.fr"
 artifactory-password: "D&sormeau1jf"
+artifactory-api_key: da269b86-62ae-4987-92ab-a3863a400735
 private_key: |
   -----BEGIN OPENSSH PRIVATE KEY-----
   b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn

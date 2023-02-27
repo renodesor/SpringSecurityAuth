@@ -19,7 +19,7 @@ jobs:
           repo: source-code  
         params:
           MAVEN_OPTS: "-Xmx1024m"
-          MAVEN_ADDITIONAL_ARGS: -DskipTests -Dpackage=war
+          MAVEN_ADDITIONAL_ARGS: "-DskipTests -Dpackage=war -Dmaven.repo.local=../maven-cache/repository -s settings.xml"
           VERSION: ((.:build_version))
           
       - put: artifactory
@@ -45,15 +45,19 @@ resources:
     source:
       #url: "https://renodesorenterprise.jfrog.io/artifactory"
       username: ((artifactory-username))
-      password: ((artifactory-password))
+      #password: ((artifactory-password))
       #repository: "maven-releases-local"
       
-      api_key: da269b86-62ae-4987-92ab-a3863a400735
+      api_key: ((artifactory-api_key))
+      ARTIFACTORY-API_KEY: ((artifactory-api_key))
       host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: reno-rep-local
+      repository_id: reno-rep-remote
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
-#      enforce_semver: true    
+      enforce_semver: true  
+      user: ((artifactory-username))  
+      password: ((artifactory-api_key))
+      access-token: ((artifactory-api_key))
       
   - name: version
     type: semver
