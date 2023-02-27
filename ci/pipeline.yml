@@ -50,7 +50,7 @@ resources:
       
       api_key: da269b86-62ae-4987-92ab-a3863a400735
       host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: release-candidates-local
+      repository_id: reno-rep-local
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
 #      enforce_semver: true    
@@ -61,7 +61,7 @@ resources:
       driver: git
       uri: git@github.com:renodesor/SpringSecurityAuth.git
       branch: main
-      file: version123
+      file: version
       private_key: {{private_key}}
 
 resource_types:

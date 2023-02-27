@@ -22,3 +22,4 @@ run:
       cd source-code
       mvn clean package ${MAVEN_ADDITIONAL_ARGS} -Drevision=${VERSION}
       cp target/*.war ../target/
+      cp version ../target/
