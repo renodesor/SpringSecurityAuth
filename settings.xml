@@ -7,13 +7,24 @@
 
 		<mirror>
 
-			<id>artifactory</id>
+			<id>artifactory-reno</id>
 
 			<mirrorOf>
 				*
 			</mirrorOf>
 
 				<url>https://renodesorenterprise.jfrog.io/artifactory/reno-maven-virtual/</url>
+
+		</mirror>
+		<mirror>
+
+			<id>artifactory-public</id>
+
+			<mirrorOf>
+				*
+			</mirrorOf>
+
+				<url>https://mvnrepository.com/artifact/</url>
 
 		</mirror>
 	</mirrors>
