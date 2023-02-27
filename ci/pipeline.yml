@@ -12,7 +12,7 @@ jobs:
           MAVEN_OPTS: "-Xmx1024m"
       - put: version
         params: {file: version/version}
-        
+      
       - put: artifactory
         params:
           build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
