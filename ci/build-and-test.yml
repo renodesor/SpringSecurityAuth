@@ -21,7 +21,5 @@ run:
     - -exc
     - |
       cd source-code
-      echo -Drevision=$(cat source-code/version)
-      echo -Drevision="cat source-code/version"
-      mvn clean package -DskipTests=true -Drevision=$(cat source-code/version)
+      mvn clean package -DskipTests=true -Drevision=1.0.0
       cp target/*.war ../target/
