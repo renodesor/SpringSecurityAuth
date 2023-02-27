@@ -6,7 +6,7 @@ resources:
       branch: main
 
   - name: artifactory
-    type: artifactory
+    type: docker-image
     source:
       url: "https://renodesorenterprise.jfrog.io/artifactory"
       username: ((artifactory-username))
