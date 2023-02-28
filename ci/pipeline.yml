@@ -19,12 +19,20 @@ jobs:
           repo: source-code  
         params:
           MAVEN_OPTS: "-Xmx1024m"
-          MAVEN_ADDITIONAL_ARGS: "-DskipTests -Dpackage=war -Dmaven.repo.local=../maven-cache/repository -s settings.xml"
+          MAVEN_ADDITIONAL_ARGS: "-DskipTests -Dpackage=war " #-Dmaven.repo.local=../maven-cache/repository -s settings.xml
           VERSION: ((.:build_version))
-          
+      
       - put: artifactory
         params:
           path: target
+          run:
+            path:
+            args:
+              - -exc
+              - |
+                jfrog rt config --url=https://renodesorenterprise.jfrog.io/artifactory --user=renodesor@yahoo.fr --password=D&sormeau1jf
+                jfrog rt upload target/* reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war
+          
 #          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
 #          build_name: "SpringSecurityAuth"
 #          build_number: ((.:build_version))
@@ -44,20 +52,24 @@ resources:
     type: artifactory
     source:
       #url: "https://renodesorenterprise.jfrog.io/artifactory"
-      username: ((artifactory-username))
+      #username: ((artifactory-username))
       #password: ((artifactory-password))
       #repository: "maven-releases-local"
       
-      api_key: ((artifactory-api_key))
-      ARTIFACTORY-API_KEY: ((artifactory-api_key))
+      api_key: 613dc958-cdb4-41e2-9a0b-d37079bd5ccb
+      apiKey: 613dc958-cdb4-41e2-9a0b-d37079bd5ccb
+      #ARTIFACTORY-API_KEY: ((artifactory-api_key))
       host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: reno-rep-remote
+      repository_id: reno-rep-local
       group_id: com.renodesor.web
       artifact_id: SpringSecurityAuth
-      enforce_semver: true  
-      user: ((artifactory-username))  
-      password: ((artifactory-api_key))
-      access-token: ((artifactory-api_key))
+      #enforce_semver: true  
+#      user: ((artifactory-username))  
+#      password: ((artifactory-access-token))
+      #name: renodesor@yahoo.fr
+      #passsword: D&sormeau1jf
+      token: ((artifactory-access-token))
+      access-token: ((artifactory-access-token))
       
   - name: version
     type: semver

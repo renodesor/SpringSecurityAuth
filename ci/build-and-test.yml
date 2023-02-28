@@ -24,6 +24,9 @@ run:
       mvn clean package ${MAVEN_ADDITIONAL_ARGS} -Drevision=${VERSION}
       cp target/*.war ../target/
       cd ../version
-      cp version ../target/
+      cp version ../target/ 
       ls -l 
       ls -l ../target/
+      jfrog rt config --url=https://renodesorenterprise.jfrog.io/artifactory --user=renodesor@yahoo.fr --password="D&sormeau1jf"
+      jfrog rt upload target/* reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war
+      
