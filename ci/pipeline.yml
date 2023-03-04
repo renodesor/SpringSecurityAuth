@@ -4,25 +4,25 @@ resources:
   source:
     uri: https://github.com/renodesor/SpringSecurityAuth.git
     branch: main
-    
+    private_key: {{private_key}}
 jobs:
 - name: build
   plan:
   - get: git-repo
     trigger: true
   #Using a yaml file for the task
-#  - task: build-maven
-#    file: git-repo/ci/ssa/task/build-and-test.yml 
-  #Using a yaml file for the task
   - task: build-maven
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source: 
-          repository: openjdk
-          tag: 8-jdk-alpine
-      inputs:
-        - name: git-repo
-      run:
-        path: git-repo/ci/scripts/build-and-test.sh
+    file: git-repo/ci/task/build-and-test.yml 
+  #Using a yaml file for the task
+#  - task: build-maven
+#    config:
+#      platform: linux
+#      image_resource:
+#        type: docker-image
+#        source: 
+#          repository: openjdk
+#          tag: 8-jdk-alpine
+#      inputs:
+#        - name: git-repo
+#      run:
+#        path: git-repo/ci/scripts/build-and-test.sh
