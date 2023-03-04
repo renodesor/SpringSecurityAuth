@@ -1,88 +1,28 @@
-
-jobs:
-  - name: build-and-test
-    plan:
-      - in_parallel:
-          - get: source-code
-            trigger: false
-          - get: version
-            params: {pre: build}
-            
-      - put: version
-        params: {file: version/version}
-      - load_var: build_version
-        file: version/version
-        
-      - task: build-and-test
-        file: source-code/ci/build-and-test.yml       
-        input_mapping:
-          repo: source-code  
-        params:
-          MAVEN_OPTS: "-Xmx1024m"
-          MAVEN_ADDITIONAL_ARGS: "-DskipTests -Dpackage=war " #-Dmaven.repo.local=../maven-cache/repository -s settings.xml
-          VERSION: ((.:build_version))
-      
-      - put: artifactory
-        params:
-          path: target
-          run:
-            path:
-            args:
-              - -exc
-              - |
-                jfrog rt config --url=https://renodesorenterprise.jfrog.io/artifactory --user=renodesor@yahoo.fr --password=D&sormeau1jf
-                jfrog rt upload target/* reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war
-          
-#          build_uri: "https://renodesorenterprise.jfrog.io/ui/builds"
-#          build_name: "SpringSecurityAuth"
-#          build_number: ((.:build_version))
-#          properties: "name=SpringSecurityAuth,version=((.:build_version))"
-#          source_paths: "source-code/target/SpringSecurityAuth*.war"
-#          target_path: "release-candidates-local/reno-rep-local/SpringSecurityAuth/((.:build_version))/SpringSecurityAuth-((.:build_version)).war"
-
 resources:
-  - name: source-code
-    type: git
-    source:
-      uri: https://github.com/renodesor/SpringSecurityAuth.git
-      branch: main
-#      private_key: {{private_key}}
-
-  - name: artifactory
-    type: artifactory
-    source:
-      #url: "https://renodesorenterprise.jfrog.io/artifactory"
-      #username: ((artifactory-username))
-      #password: ((artifactory-password))
-      #repository: "maven-releases-local"
-      
-      api_key: 613dc958-cdb4-41e2-9a0b-d37079bd5ccb
-      apiKey: 613dc958-cdb4-41e2-9a0b-d37079bd5ccb
-      #ARTIFACTORY-API_KEY: ((artifactory-api_key))
-      host: https://renodesorenterprise.jfrog.io/artifactory
-      repository_id: reno-rep-local
-      group_id: com.renodesor.web
-      artifact_id: SpringSecurityAuth
-      #enforce_semver: true  
-#      user: ((artifactory-username))  
-#      password: ((artifactory-access-token))
-      #name: renodesor@yahoo.fr
-      #passsword: D&sormeau1jf
-      token: ((artifactory-access-token))
-      access-token: ((artifactory-access-token))
-      
-  - name: version
-    type: semver
-    source:
-      driver: git
-      uri: git@github.com:renodesor/SpringSecurityAuth.git
-      branch: main
-      file: version
-      private_key: {{private_key}}
-
-resource_types:
-  - name: artifactory
-    type: registry-image
-    source:
-      repository: emeraldsquad/artifactory-resource
-      tag: 2.0.14
+- name: git-repo
+  type: git
+  source:
+    uri: https://github.com/renodesor/SpringSecurityAuth.git
+    branch: main
+    
+jobs:
+- name: build
+  plan:
+  - get: git-repo
+    trigger: true
+  #Using a yaml file for the task
+#  - task: build-maven
+#    file: git-repo/ci/ssa/task/build-and-test.yml 
+  #Using a yaml file for the task
+  - task: build-maven
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: 
+          repository: openjdk
+          tag: 8-jdk-alpine
+      inputs:
+        - name: git-repo
+      run:
+        path: git-repo/ci/scripts/build-and-test.sh
