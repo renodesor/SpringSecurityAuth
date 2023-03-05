@@ -4,6 +4,7 @@ cd git-repo
 
 #export MAVEN_USER_HOME=$(cd maven-cache && pwd)
 export COMPONENT_NAME=SpringSecurityAuth
+export PRODUCT_NAME=com.renodesor.web
 #export MAVEN_ARGS="-Dmaven.repo.local=../maven-cache/repository -s settings.xml ${MAVEN_ADDITIONAL_ARGS}"
 	echo No commit : $(git rev-parse --short HEAD)
 	./mvnw -version

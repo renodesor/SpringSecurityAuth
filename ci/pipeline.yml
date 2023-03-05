@@ -3,7 +3,7 @@ resource_types:
   type: docker-image
   source:
     repository: springio/artifactory-resource
-    tag: 0.0.18
+    tag: 0.0.1
  
 resources:   
 - name: git-repo
@@ -19,7 +19,7 @@ resources:
     uri: ((artifactory-server))
     username: ((artifactory-username))
     password: ((artifactory-password)) 
-    build_name: 1.0.0-build
+    build_name: 1.0.0
 
 jobs:
 - name: build
@@ -46,10 +46,10 @@ jobs:
 #        path: git-repo/ci/scripts/build-and-test.sh
   - put: artifactory-repo
     params: 
-      repo: reno-rep-local
-      version: ${VERSION}
-      build_number: ${VERSION}
+      repo: reno-rep-local/${PRODUCT_NAME}
+#      version: ${VERSION}
+#      build_number: ${BUILD_ID}
       folder: distribution-repository
-#      build_number: "${BUILD_PIPELINE_NAME}-${BUILD_JOB_NAME}-${BUILD_NAME}"
+      build_number: "${BUILD_PIPELINE_NAME}-${BUILD_JOB_NAME}-${BUILD_NAME}"
       build_uri: "http://localhost:8080/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NUMBER}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}"
       disable_checksum_uploads: true
