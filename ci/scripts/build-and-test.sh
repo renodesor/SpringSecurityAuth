@@ -10,7 +10,7 @@ cd git-repo
 	echo BUILD_NAME:${BUILD_NAME}
 	echo uri:"http://localhost:8080/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NUMBER}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}"
 	revision=${BUILD_NAME}
-	./mvnw clean install
+	./mvnw clean package
 	echo "**** Fin du build maven ****"
 	ls -l 
 	echo "**** Copie du pom ****"
