@@ -8,12 +8,14 @@ cd git-repo
 	ls -l 
 	echo "**** List target ****"
 	ls -l target
-	echo creation du repertoire distribution-repository
-	mkdir /tmp/build/put/distribution-repository
+	cd /
+	echo "**** List /tmp/build/put/ ****"
+	ls -l /tmp/build/put/
 	echo copie du fichier war
-	cp target/SpringSecurityAuth-1.2.3.war /tmp/build/put/distribution-repository
+	cp /tmp/build/put/git-repo/target/SpringSecurityAuth-1.2.3.war /tmp/build/put/distribution-repository
 	echo "**** List distribution-repository ****"
 	ls -l /tmp/build/put/distribution-repository
 	echo "**** List target in git-repo ****"
-	ls -l /tmp/build/put/git-repo
-cd ..
+	ls -l /tmp/build/put/git-repo/target
+	
+cd /tmp/build/put
