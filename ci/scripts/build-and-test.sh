@@ -37,6 +37,8 @@ export PRODUCT_NAME=com.renodesor.web
 	
 	echo -e "Copie du pom"
 	
+	mkdir -p ../distribution-repository/${COMPONENT_NAME}/${VERSION}
+	
 	cp pom.xml ../distribution-repository/${COMPONENT_NAME}/${VERSION}/${COMPONENT_NAME}-${VERSION}.pom
 	
 	# est-ce qu'il y a des artefacts à copier autres que le pom.xml? 
