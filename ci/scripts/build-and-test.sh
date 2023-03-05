@@ -2,10 +2,13 @@
 set -e
 
 cd git-repo
+	echo BUILD_NAME-1:((BUILD_NAME))
+	echo BUILD_NAME-2:${BUILD_NAME}
+	revision=((BUILD_NAME))
+	revision=${BUILD_NAME}
 	./mvnw clean package
 	echo "**** Fin du build maven ****"
 	ls -l 
-	echo "**** Copie du pom ****"
-	cp pom.xml target/pom-${revision}.xml
+	echo "**** List target ****"
 	ls -l target
 cd ..

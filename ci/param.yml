@@ -10,6 +10,6 @@ BUILD_PIPELINE_NAME: spring-security-auth
 BUILD_JOB_NAME: build
 BUILD_NAME: 1.2.3
 
-private_key: |
+
   
   
