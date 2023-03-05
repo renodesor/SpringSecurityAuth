@@ -8,6 +8,8 @@ cd git-repo
 	ls -l 
 	echo "**** List target ****"
 	ls -l target
+	echo "**** List target/SpringSecurityAuth-1.2.3 ****"
+	ls -l target/SpringSecurityAuth-1.2.3
 
 	echo copie du fichier war
 	cp target/SpringSecurityAuth-1.2.3.war ../distribution-repository
