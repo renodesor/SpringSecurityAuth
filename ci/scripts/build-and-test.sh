@@ -13,6 +13,7 @@ cd git-repo
 
 	echo copie du fichier war
 	cp target/SpringSecurityAuth-1.2.3.war ../distribution-repository
+	cp -R target/SpringSecurityAuth-1.2.3 ../distribution-repository/SpringSecurityAuth-1.2.3
 	echo "**** List ../distribution-repository ****"
 	ls -l ../distribution-repository
 	
