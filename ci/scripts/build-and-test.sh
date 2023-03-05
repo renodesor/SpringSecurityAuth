@@ -2,9 +2,8 @@
 set -e
 
 cd git-repo
-	echo BUILD_NAME-2:${BUILD_NAME}
-	revision=${BUILD_NAME}
-	./mvnw clean package
+	echo "**** Début du build maven ****"
+	./mvnw clean package -Drevision=1.2.3
 	echo "**** Fin du build maven ****"
 	ls -l 
 	echo "**** List target ****"
