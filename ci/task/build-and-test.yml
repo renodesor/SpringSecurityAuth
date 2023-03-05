@@ -4,7 +4,12 @@ image_resource:
   source: 
     repository: openjdk
     tag: 8-jdk-alpine
+    
 inputs:
 - name: git-repo
+
+outputs:
+- name: distribution-repository
+
 run:
   path: git-repo/ci/scripts/build-and-test.sh

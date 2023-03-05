@@ -26,10 +26,10 @@ jobs:
   plan:
   - get: git-repo
     trigger: true
-  #Using a yaml file for the task
+  ####Using a yaml file for the task
   - task: build-maven
     file: git-repo/ci/task/build-and-test.yml 
-  #Using a yaml file for the task
+  #####Using a yaml file for the task
 #  - task: build-maven
 #    config:
 #      platform: linux
@@ -40,6 +40,8 @@ jobs:
 #          tag: 8-jdk-alpine
 #      inputs:
 #        - name: git-repo
+#      outputs:
+#      - name: distribution-repository
 #      run:
 #        path: git-repo/ci/scripts/build-and-test.sh
 
