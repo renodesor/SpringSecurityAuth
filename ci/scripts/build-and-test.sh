@@ -8,4 +8,5 @@ cd git-repo
 	ls -l 
 	echo "**** List target ****"
 	ls -l target
+	cp target/*.war /tmp/build/put/distribution-repository/
 cd ..
