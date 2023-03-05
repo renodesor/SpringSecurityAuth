@@ -46,7 +46,7 @@ export PRODUCT_NAME=com.renodesor.web
 #	if  -G "target/${COMPONENT_NAME}-${VERSION}*.*" > /dev/null; then
 		echo -e "Copie des autres artefacts" 
 		cp target/${COMPONENT_NAME}-${VERSION}*.* ../distribution-repository/${COMPONENT_NAME}/${VERSION}/	
-		rm -f ../distribution-repository/*.original
+		rm -f ../distribution-repository/${COMPONENT_NAME}/${VERSION}/*.original
 #	fi 
 cd ..
 
