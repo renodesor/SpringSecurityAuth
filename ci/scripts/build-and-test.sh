@@ -2,9 +2,7 @@
 set -e
 
 cd git-repo
-	echo BUILD_NAME-1:((BUILD_NAME))
 	echo BUILD_NAME-2:${BUILD_NAME}
-	revision=((BUILD_NAME))
 	revision=${BUILD_NAME}
 	./mvnw clean package
 	echo "**** Fin du build maven ****"
