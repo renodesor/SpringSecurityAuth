@@ -16,6 +16,8 @@
 	<packaging>war</packaging>
 	<properties>
 		<java.version>8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
 		<revision>0.0.1-SNAPSHOT</revision>
 		<start-class>com.renodesor.login.SpringSecurityAuthApplication</start-class>
 		<artifactPass>Admin1@jfroj</artifactPass>
@@ -142,10 +144,10 @@
 						<configuration>				
 							<publisher>				
 								<contextUrl>https://renodesorenterprise.jfrog.io/artifactory</contextUrl>				
-								<username>uadmin</username>				
+								<username>renodesor@yahoo.fr</username>				
 								<password></password>				
 								<repoKey>da269b86-62ae-4987-92ab-a3863a400735</repoKey> 
-								<snapshotRepoKey>reno-rep-remote</snapshotRepoKey>				
+								<snapshotRepoKey>reno-rep-local</snapshotRepoKey>				
 							</publisher>				
 						</configuration>				
 					</execution>				
@@ -161,7 +163,7 @@
                         </goals>
                         <configuration>
                   <!--          <classifier>spring-boot</classifier> -->
-                            <mainClass>${start-class}</mainClass>
+                            <mainClass>com.renodesor.login.SpringSecurityAuthApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
