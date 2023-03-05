@@ -47,7 +47,7 @@ jobs:
 
   - put: artifactory-repo
     params: 
-      repo: reno-rep-local
+      repo: libs-snapshot-local
 #      build_number: "${BUILD_ID}"
       folder: distribution-repository
       build_number: "${BUILD_PIPELINE_NAME}-${BUILD_JOB_NAME}-${BUILD_NAME}"
