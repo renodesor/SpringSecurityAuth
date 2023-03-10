@@ -12,10 +12,11 @@ export PRODUCT_NAME=com.renodesor.web
 		echo version 1: ${VERSION}
 #		VERSION=$(echo "$(date +'%Y%m%d%H%M%S')-$(git rev-parse --short HEAD)") 
 		VERSION=1.0.0-build.$(echo "$(date +'%Y%m%d%H%M%S')")
+		version=${VERSION}
 	fi 
-#	mkdir ../distribution-repository
-	echo "${VERSION}" > ../distribution-repository/version
-	cat ../distribution-repository/version
+
+#	echo "${VERSION}" > ../distribution-repository/version
+#	cat ../distribution-repository/version
 	
 	#Verifier si jacoco-maven-plugin est présent dans pom.xml pour lancer le build
 	
